@@ -152,7 +152,7 @@ def normalize_input_df(df: pd.DataFrame) -> pd.DataFrame:
     return df2
 
 # ---------- UI ----------
-st.title("📊 Case Dashboard")
+st.title("📊 Power-style Case Dashboard")
 
 uploaded_file = st.file_uploader("📂 Upload Excel file", type=["xlsx"])
 if uploaded_file:
@@ -1019,8 +1019,18 @@ if uploaded_file:
     explorer_cols = ["Level", "Full Name", "Case Number", "Primary Category",
                      "Secondary Category", "Current Status", "Status",
                      "Date/Time Opened", "Date/Time Closed", "Manager", "ECR_Category"]
+
+    # filter only columns that exist
     explorer_cols = [c for c in explorer_cols if c in df.columns]
-    st.dataframe(df[explorer_cols], width=True)
+
+    if df.empty:
+        st.warning("⚠️ No cases found with the current filters.")
+    elif not explorer_cols:
+        st.warning("⚠️ None of the expected Case Explorer columns are available in the uploaded file.")
+        st.write("Available columns in dataframe:", df.columns.tolist())
+    else:
+        st.dataframe(df[explorer_cols].reset_index(drop=True), use_container_width=True)
+
 
     # Export
     csv = df.to_csv(index=False).encode("utf-8")
