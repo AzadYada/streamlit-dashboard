@@ -152,7 +152,7 @@ def normalize_input_df(df: pd.DataFrame) -> pd.DataFrame:
     return df2
 
 # ---------- UI ----------
-st.title("📊 Power-style Case Dashboard")
+st.title("📊 Case Dashboard")
 
 uploaded_file = st.file_uploader("📂 Upload Excel file", type=["xlsx"])
 if uploaded_file:
