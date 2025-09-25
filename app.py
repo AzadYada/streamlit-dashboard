@@ -1486,7 +1486,7 @@ with tab5:
         return d
 
     # ---- Always rebuild from filtered df, but preserve edits ----
-    agent_stats["Remaining Days"] = 10
+    agent_stats["Remaining Days"] = 3
     agent_stats["Target"] = 8
     fresh_df = agent_stats.rename(columns={"Full Name": "Agent"}).copy()
 
