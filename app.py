@@ -1129,7 +1129,7 @@ def categorize_level_to_ecr(level):
         "payment vendor",
         "payment escalation",
         "regional billing",
-        "Refund Research"
+        "refund research"
     }
 
     if pd.isna(level) or str(level).strip() == "":
